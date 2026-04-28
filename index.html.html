@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>الحضارة الإسلامية | مشروع لين الشرفاء</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #415a77 100%);
+            color: #ffffff;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
+        /* Islamic Pattern Background for Art Section */
+        .art-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, #ffd60a 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #ffed4e 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .art-pattern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 1;
+        }
+
+        /* Navigation - Mobile First */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffd60a;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: block;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .mobile-menu.active {
+            color: #ffd60a;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            transition: right 0.3s ease;
+            z-index: 1001;
+            padding: 100px 30px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin: 20px 0;
+        }
+
+        .mobile-nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: #ffd60a;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), 
+                        url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663401898650/SjVSyGSixZhvUWth.jpg') center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 6vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd60a, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            max-width: 90%;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd60a, #ffed4e);
+            color: #000;
+            padding: clamp(12px, 3vw, 18px) clamp(24px, 6vw, 40px);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: clamp(14px, 3vw, 18px);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 214, 10, 0.4);
+            white-space: nowrap;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 214, 10, 0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            background: linear-gradient(45deg, #ffd60a, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            line-height: 1.2;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #ffd60a, #ffed4e);
+            border-radius: 2px;
+        }
+
+        .content-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .text-content {
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            line-height: 1.8;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .text-content p {
+            margin-bottom: 1.2rem;
+            opacity: 0.95;
+            text-align: justify;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(255, 214, 10, 0.15), rgba(255, 237, 78, 0.08));
+            padding: 1.2rem;
+            border-radius: 15px;
+            border-right: 4px solid #ffd60a;
+            margin: 1.5rem 0;
+            font-size: 1rem;
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            width: 100%;
+            height: clamp(250px, 40vw, 400px);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Art Section Special Styling */
+        .art-section {
+            position: relative;
+        }
+
+        .art-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(0,0,0,0.9);
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            border: 2px solid rgba(255,214,10,0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .art-content h3 {
+            color: #ffd60a;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Amiri', serif;
+            text-align: center;
+        }
+
+        .art-decoration {
+            font-size: 2rem;
+            color: #ffd60a;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd60a, #ffed4e, #ffd60a);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 100%;
+            margin: 3rem 0;
+            padding: 0 10px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(to bottom, #ffd60a, #ffed4e);
+            top: 0;
+            bottom: 0;
+            right: 30px;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-right: 80px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffd60a;
+            border-radius: 50%;
+            right: 21px;
+            top: 5px;
+            box-shadow: 0 0 0 4px rgba(255,214,10,0.3);
+        }
+
+        .timeline-content {
+            background: rgba(255,214,10,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-right: 3px solid #ffd60a;
+            width: 100%;
+        }
+
+        .timeline-content h3 {
+            color: #ffd60a;
+            margin-bottom: 0.5rem;
+            font-family: 'Amiri', serif;
+        }
+
+        .timeline-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: rgba(255,214,10,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(255,214,10,0.3);
+        }
+
+        .stat-item h3 {
+            color: #ffd60a;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .scholars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .scholar-card {
+            background: rgba(255,214,10,0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid rgba(255,214,10,0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .scholar-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd60a;
+            box-shadow: 0 15px 40px rgba(255,214,10,0.2);
+        }
+
+        .scholar-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ffd60a, #ffed4e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: #000;
+        }
+
+        .scholar-card h3 {
+            color: #ffd60a;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-family: 'Amiri', serif;
+        }
+
+        .scholar-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: rgba(0,0,0,0.8);
+            padding: 3rem 20px;
+            text-align: center;
+            border-top: 2px solid rgba(255,214,10,0.3);
+        }
+
+        footer h3 {
+            color: #ffd60a;
+            margin-bottom: 1rem;
+            font-family: 'Amiri', serif;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 15px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .scholars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Touch-friendly */
+        a, button, .mobile-menu {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        input, textarea, select {
+            font-size: 16px;
+        }
+
+        @supports (padding: max(0px)) {
+            nav, .hero {
+                padding-right: env(safe-area-inset-right);
+                padding-left: env(safe-area-inset-left);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mobile Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">الحضارة الإسلامية</a>
+            <ul class="nav-links">
+                <li><a href="#intro">مقدمة</a></li>
+                <li><a href="#definition">التعريف</a></li>
+                <li><a href="#history">التاريخ</a></li>
+                <li><a href="#golden">العصر الذهبي</a></li>
+                <li><a href="#science">العلوم</a></li>
+                <li><a href="#calligraphy">الخط الإسلامي</a></li>
+                <li><a href="#architecture">العمارة</a></li>
+                <li><a href="#art">الزخرفة</a></li>
+                <li><a href="#impact">التأثير</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        
+        <div class="mobile-nav" id="mobileNav">
+            <ul class="mobile-nav-links">
+                <li><a href="#intro">مقدمة</a></li>
+                <li><a href="#definition">التعريف</a></li>
+                <li><a href="#history">التاريخ</a></li>
+                <li><a href="#golden">العصر الذهبي</a></li>
+                <li><a href="#science">العلوم</a></li>
+                <li><a href="#calligraphy">الخط الإسلامي</a></li>
+                <li><a href="#architecture">العمارة</a></li>
+                <li><a href="#art">الزخرفة</a></li>
+                <li><a href="#impact">التأثير</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>الحضارة الإسلامية</h1>
+            <p>بحث علمي متكامل وعميق جداً<br><strong>إعداد: لين الشرفاء</strong></p>
+            <a href="#intro" class="cta-button">ابدأ القراءة</a>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section id="intro">
+        <h2>مقدمة علمية موسعة</h2>
+        <div class="content-grid">
+            <div class="text-content">
+                <p>الحضارة الإسلامية مشروع حضاري شامل استمر أكثر من ألف عام وأثر في كل جوانب الحياة. تحولت من بيئة صحراوية إلى أكبر إمبراطورية في التاريخ خلال 30 عاماً فقط. هذا التحول السريع لم يكن مجرد فتوحات عسكرية، بل كان ثورة حضارية شاملة شملت العلم والفن والعمارة والفلسفة والأدب.</p>
+                <div class="highlight">
+                    <strong>السر:</strong> الجمع بين الوحي والعقل خلق توازناً فريداً. الإسلام لم يفصل بين العلم والروح، بل جعلهما متكاملين في منظومة حضارية واحدة.
+                </div>
+                <p>امتدت الحضارة الإسلامية من الأندلس غرباً إلى الهند شرقاً، وترجمت العلوم اليونانية والفارسية والهندية، ثم أضافت إليها اكتشافات وابتكارات جديدة. كانت بغداد وقرطبة ودمشق وإسطنبول مراكز إشعاع حضاري لا تضاهى.</p>
+            </div>
+            <div class="image-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663401898650/BFYlPtETAousxVMk.webp" alt="باب المدينة الإسلامية">
+            </div>
+        </div>
+    </section>
+
+    <!-- Definition -->
+    <section style="background: rgba(0,0,0,0.4);">
+        <h2>تعريف الحضارة الإسلامية</h2>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663401898650/RRsGBFFCsfJnjUzf.jpg" alt="مكتبة بغداد">
+            </div>
+            <div class="text-content">
+                <p><strong>نظام حضاري شامل</strong> يقوم على التوحيد، العقلانية، العدالة، والعالمية. الحضارة الإسلامية ليست مجرد دين بل هي منظومة متكاملة تشمل السياسة والاقتصاد والعلم والفن والأخلاق.</p>
+                <p>تميزت هذه الحضارة بعدة خصائص أساسية: أولاً، الاهتمام بالعلم والمعرفة كفريضة دينية. ثانياً، احترام العقل والتفكير النقدي. ثالثاً، التسامح الديني والثقافي. رابعاً، الاهتمام بالعمارة والفنون كتعبير عن الجمال الإلهي.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- History -->
+    <section id="history">
+        <h2>التاريخ الإسلامي</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>610-632 م</h3>
+                    <p><strong>العهد النبوي:</strong> تأسيس الدولة الإسلامية الأولى بقيادة النبي محمد صلى الله عليه وسلم. بناء أسس الحضارة على التوحيد والعدل والمساواة.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>632-661 م</h3>
+                    <p><strong>الخلافة الراشدة:</strong> فترة التوسع السريع والفتوحات الإسلامية. نشر الإسلام والحضارة الإسلامية في ثلاث قارات.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>661-750 م</h3>
+                    <p><strong>الدولة الأموية:</strong> إمبراطورية عالمية امتدت من الأندلس إلى حدود الصين. اهتمام بالعمارة والفنون والعلوم.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>750-1258 م</h3>
+                    <p><strong>الدولة العباسية:</strong> العصر الذهبي للحضارة الإسلامية. ذروة الإنجازات العلمية والفنية والمعمارية. بناء بيت الحكمة وازدهار العلوم.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Golden Age -->
+    <section id="golden" style="background: rgba(0,0,0,0.4);">
+        <h2>العصر الذهبي</h2>
+        <div class="content-grid">
+            <div class="text-content">
+                <p><strong>بيت الحكمة</strong> - أول جامعة عالمية في بغداد، أسسها الخليفة هارون الرشيد وطورها ابنه المأمون. كانت مركزاً للترجمة والبحث العلمي والابتكار.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>2.5M</h3>
+                        <p>كتاب ومخطوط</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>1000+</h3>
+                        <p>عالم ومترجم</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>400</h3>
+                        <p>سنة ازدهار</p>
+                    </div>
+                </div>
+                <p>في هذا العصر تم ترجمة أعمال أرسطو وأفلاطون وإقليدس وجالينوس، وأضيف إليها اكتشافات جديدة في الرياضيات والفلك والطب والكيمياء. كان هذا العصر نقطة تحول في تاريخ البشرية.</p>
+            </div>
+            <div class="image-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663401898650/bZAluWaATAfmgPEm.jpg" alt="بيت الحكمة">
+            </div>
+        </div>
+    </section>
+
+    <!-- Science -->
+    <section id="science">
+        <h2>الإنجازات العلمية</h2>
+        <div class="scholars-grid">
+            <div class="scholar-card">
+                <div class="scholar-image"><i class="fas fa-calculator"></i></div>
+                <h3>الخوارزمي</h3>
+                <p><strong>أبو الجبر</strong><br>اخترع الخوارزمية والجبر، وهما أساس الرياضيات الحديثة والبرمجة الحاسوبية. كتابه "الكتاب المختصر في حساب الجبر والمقابلة" غيّر مسار العلوم.</p>
+            </div>
+            <div class="scholar-card">
+                <div class="scholar-image"><i class="fas fa-eye"></i></div>
+                <h3>ابن الهيثم</h3>
+                <p><strong>مؤسس علم البصريات</strong><br>اكتشف قوانين الضوء والانكسار والانعكاس. كتابه "كتاب المناظر" كان أساس الفيزياء الحديثة.</p>
+            </div>
+            <div class="scholar-card">
+                <div class="scholar-image"><i class="fas fa-flask"></i></div>
+                <h3>جابر بن حيان</h3>
+                <p><strong>مؤسس الكيمياء</strong><br>اخترع المنهج التجريبي العلمي. اكتشف العديد من المركبات الكيميائية والحوامض.</p>
+            </div>
+            <div class="scholar-card">
+                <div class="scholar-image"><i class="fas fa-heartbeat"></i></div>
+                <h3>ابن سينا</h3>
+                <p><strong>أمير الأطباء</strong><br>كتب "القانون في الطب" الذي ظل المرجع الطبي الأساسي لقرون. اكتشف أمراضاً جديدة وطرق علاج مبتكرة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Calligraphy Section -->
+    <section id="calligraphy" style="background: rgba(0,0,0,0.4);">
+        <h2>الخط الإسلامي والعلماء الخطاطون</h2>
+        
+        <div class="two-column">
+            <div class="text-content">
+                <p><strong>الخط الإسلامي</strong> ليس مجرد فن كتابة، بل هو تعبير عن الجمال الإلهي والدقة الرياضية. الخطاطون المسلمون طوروا أنواعاً متعددة من الخطوط، كل منها له خصائصه الفنية والرياضية الفريدة.</p>
+
+                <div class="highlight">
+                    <strong>أنواع الخط الإسلامي الرئيسية:</strong><br>
+                    • الخط الكوفي: الأقدم والأكثر هندسية<br>
+                    • الخط النسخ: الأكثر وضوحاً وسهولة<br>
+                    • الخط الثلث: الأكثر جمالاً وتعقيداً<br>
+                    • الخط الديواني: المستخدم في الوثائق الرسمية
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663401898650/rcHFTzQWMCjhLyBC.webp" alt="عالم يكتب بالخط الإسلامي">
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="image-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663401898650/sZIuALfktDXpuSQV.webp" alt="خط عربي جميل">
+            </div>
+            <div class="text-content">
+                <p><strong>ابن مقلة (886-940 م)</strong> يعتبر مؤسس الخط العربي الحديث. طور نظاماً هندسياً للخط يعتمد على النقطة والدائرة. وضع قواعد دقيقة لنسب الحروف وتناسبها. كتابه في الخط أصبح مرجعاً لكل الخطاطين من بعده.</p>
+
+                <p><strong>ياقوت المستعصمي (1221-1298 م)</strong> يعتبر أعظم خطاط في التاريخ الإسلامي. طور الخط الثلث إلى درجة من الكمال لم تُحقق من قبل. كان خطاطاً للخليفة العباسي، وتدرب على يديه مئات الخطاطين. أسس مدرسة خط استمرت لقرون.</p>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="text-content">
+                <p><strong>أحمد القرماني</strong> من أشهر الخطاطين العثمانيين. تخصص في الخط الديواني وطوره إلى مستويات فنية عالية جداً. كتاباته تجمع بين الجمال والدقة الرياضية.</p>
+
+                <p style="margin-top: 1.5rem;"><strong>الخصائص الرياضية للخط الإسلامي:</strong> يعتمد على نظام هندسي دقيق جداً. كل حرف يُكتب بناءً على نسب محددة مسبقاً. النقطة هي الوحدة الأساسية، والدائرة هي الأساس الهندسي. ارتفاع الحروف يساوي عدداً محدداً من النقاط، والعرض يتبع نسباً دقيقة.</p>
+            </div>
+            <div class="image-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663401898650/oxvioWylkZqhkNPl.webp" alt="خطاط يعمل على المخطوطات">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Architecture Section -->
+    <section id="architecture">
+        <h2>العمارة الإسلامية والمعماريون العظماء</h2>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663401898650/YJlMJIumAZbrVXkz.jpg" alt="العمارة الإسلامية">
+            </div>
+            <div class="text-content">
+                <p><strong>العمارة الإسلامية</strong> تجمع بين الجمال الفني والوظيفية العملية. لا تركز على الزينة الخارجية فقط، بل على خلق فراغات داخلية جميلة ومريحة. المسجد والقصر والمدرسة والحمام كلها تحفة معمارية.</p>
+
+                <div class="highlight">
+                    <strong>المبادئ الأساسية للعمارة الإسلامية:</strong><br>
+                    • التناظر والتوازن<br>
+                    • استخدام الأقواس والقباب<br>
+                    • الفسيفساء والزخارف الهندسية<br>
+                    • الفناء الداخلي والنوافير<br>
+                    • الاهتمام بالظل والضوء
+                </div>
+
+                <p><strong>سنان الدين (1489-1588 م)</strong> يعتبر أعظم معماري إسلامي. بنى أكثر من 300 مبنى في الدولة العثمانية. مسجد السليمانية في إسطنبول يعتبر من أعظم الإنجازات المعمارية في التاريخ. جمع بين الجمال الفني والدقة الهندسية بطريقة لم تُحقق من قبل.</p>
+
+                <p><strong>المعماريون الأندلسيون</strong> طوروا أسلوباً معمارياً فريداً يجمع بين التأثيرات الإسلامية والإسبانية. قصر الحمراء في غرناطة يعتبر من أعظم الأمثلة على العمارة الإسلامية. كل غرفة فيه تحفة فنية مستقلة.</p>
+
+                <p><strong>المعماريون المصريون</strong> بنوا المساجس الكبرى والمدارس والأضرحة. جامع محمد علي وجامع الأزهر يعتبران من أعظم الإنجازات المعمارية. المعماريون المصريون اهتموا بالتفاصيل الدقيقة والزخارف الجميلة.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem;">
+            <h3 style="color: #ffd60a; text-align: center; margin-bottom: 2rem; font-family: 'Amiri', serif; font-size: 1.8rem;">المباني الإسلامية الخالدة</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="background: rgba(255,214,10,0.1); padding: 1.5rem; border-radius: 15px; border-right: 4px solid #ffd60a;">
+                    <h4 style="color: #ffd60a; margin-bottom: 1rem; font-family: 'Amiri', serif;"><i class="fas fa-crown"></i> قصر الحمراء</h4>
+                    <p style="text-align: justify;">قصر إسلامي في غرناطة بالأندلس. يعتبر من أعظم الأمثلة على العمارة الإسلامية. كل زاوية فيه تحفة فنية. الزخارف الهندسية والنباتية تغطي كل الجدران. النوافير والفسيفساء تخلق جمالاً لا يُنسى.</p>
+                </div>
+                <div style="background: rgba(255,214,10,0.1); padding: 1.5rem; border-radius: 15px; border-right: 4px solid #ffd60a;">
+                    <h4 style="color: #ffd60a; margin-bottom: 1rem; font-family: 'Amiri', serif;"><i class="fas fa-mosque"></i> مسجد قرطبة</h4>
+                    <p style="text-align: justify;">أكبر مسجد في العالم الإسلامي في عصره. يحتوي على 856 عموداً من الرخام والجرانيت. الأقواس المزدوجة الحمراء والبيضاء تخلق تأثيراً بصرياً فريداً. المحراب مغطى بالفسيفساء الذهبية.</p>
+                </div>
+                <div style="background: rgba(255,214,10,0.1); padding: 1.5rem; border-radius: 15px; border-right: 4px solid #ffd60a;">
+                    <h4 style="color: #ffd60a; margin-bottom: 1rem; font-family: 'Amiri', serif;"><i class="fas fa-building"></i> الجامع الأزهر</h4>
+                    <p style="text-align: justify;">جامع وجامعة في القاهرة. أسس سنة 970 م. يجمع بين الجمال المعماري والوظيفة التعليمية. الزخارف الإسلامية والخط العربي يغطيان جدرانه. ظل مركزاً للعلم والتعليم لأكثر من ألف سنة.</p>
+                </div>
+                <div style="background: rgba(255,214,10,0.1); padding: 1.5rem; border-radius: 15px; border-right: 4px solid #ffd60a;">
+                    <h4 style="color: #ffd60a; margin-bottom: 1rem; font-family: 'Amiri', serif;"><i class="fas fa-gem"></i> تاج محل</h4>
+                    <p style="text-align: justify;">ضريح ملكي في الهند. يعتبر من أعظم الإنجازات المعمارية في التاريخ. بني من الرخام الأبيض والأحجار الكريمة. الزخارف الهندسية والنباتية تخلق جمالاً خالداً. يعكس الضوء بطريقة تجعله يبدو مختلفاً في كل وقت من اليوم.</p>
+                </div>
+                <div style="background: rgba(255,214,10,0.1); padding: 1.5rem; border-radius: 15px; border-right: 4px solid #ffd60a;">
+                    <h4 style="color: #ffd60a; margin-bottom: 1rem; font-family: 'Amiri', serif;"><i class="fas fa-gopuram"></i> مسجد السليمانية</h4>
+                    <p style="text-align: justify;">مسجد في إسطنبول بني بواسطة المعماري سنان. يعتبر من أعظم الإنجازات المعمارية العثمانية. القبة الكبيرة تحيط بها أربع أنصاف قباب. الإضاءة من النوافذ تخلق جواً روحانياً فريداً.</p>
+                </div>
+                <div style="background: rgba(255,214,10,0.1); padding: 1.5rem; border-radius: 15px; border-right: 4px solid #ffd60a;">
+                    <h4 style="color: #ffd60a; margin-bottom: 1rem; font-family: 'Amiri', serif;"><i class="fas fa-landmark"></i> قبة الصخرة</h4>
+                    <p style="text-align: justify;">مسجد في القدس بني سنة 691 م. يعتبر من أقدم الإنجازات المعمارية الإسلامية. القبة الذهبية تهيمن على المشهد. الزخارف الإسلامية والخط العربي تغطي الجدران الداخلية بجمال لا يُنسى.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Comprehensive Art Section -->
+    <section id="art" class="art-section art-pattern">
+        <div class="art-content">
+            <h3><i class="fas fa-gem"></i> فن الزخرفة الإسلامية <i class="fas fa-gem"></i></h3>
+            
+            <div class="art-decoration">✦ الزخرفة الإسلامية ✦</div>
+            
+            <p style="text-align: justify; font-size: 1.1rem; line-height: 2;">
+                <strong>الزخرفة الإسلامية</strong> هي قمة الإبداع الفني في تاريخ البشرية، تجمع بين الرياضيات، الفيزياء، والروحانية في تناغم سماوي. ليست مجرد زينة، بل <strong>لغة بصرية</strong> تعبر عن التوحيد والكمال الإلهي. كل نمط هندسي يرمز إلى اللانهاية والوحدة الإلهية.
+            </p>
+
+            <div style="background: rgba(255,214,10,0.1); padding: 1.5rem; border-radius: 15px; margin: 2rem 0; border-right: 5px solid #ffd60a;">
+                <h4 style="color: #ffd60a; margin-bottom: 1rem;"><i class="fas fa-star"></i> أنواع الزخرفة الأربعة الكبرى:</h4>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; font-size: 1rem;">
+                    <div><i class="fas fa-square" style="color: #ffd60a;"></i> <strong>هندسية:</strong> مضلعات منتظمة، نجوم ثمانية وعشرية، شبكات لا نهائية تعبر عن الكمال الإلهي</div>
+                    <div><i class="fas fa-leaf" style="color: #ffd60a;"></i> <strong>نباتية:</strong> أوراق الرمان، الزخارف العضوية، الأزهار المتشابكة التي تعكس جمال الطبيعة</div>
+                    <div><i class="fas fa-font" style="color: #ffd60a;"></i> <strong>خطية:</strong> الكوفي، الثلث، النسخ، الديواني المخطوط - الخط كفن وليس مجرد كتابة</div>
+                    <div><i class="fas fa-infinity" style="color: #ffd60a;"></i> <strong>مجردة:</strong> دوامات، أمواج، حركة لا نهائية تعبر عن الحركة الأبدية للكون</div>
+                </div>
+            </div>
+
+            <p style="text-align: justify; font-size: 1.1rem; line-height: 2;">
+                تعتمد الزخرفة على <strong>قانون التناظر الستة</strong> (P6M) - أعلى درجات التماثل في الفن البشري. كل نمط يحتوي على <strong>16 محطة تناظر</strong>، مما يخلق إحساساً بالكمال واللامتناهي. هذا النظام الرياضي لم يُكتشف علمياً إلا في القرن العشرين، لكن الفنانين المسلمين كانوا يستخدمونه منذ ألف سنة.
+            </p>
+
+            <div class="art-decoration">✦ الرياضيات في الزخرفة ✦</div>
+
+            <p style="text-align: justify; font-size: 1.1rem; line-height: 2;">
+                استخدم الفنانون المسلمون <strong>الهندسة الوصفية</strong> قبل ألف سنة، وأوجدوا <strong>التناظر الدوراني</strong> والـ <strong>الانعكاسي</strong>. النجوم الإسلامية (8/10/12 نقطة) مبنية على <strong>متعددات الأضلاع المركبة</strong> التي لم تُكتشف رياضياً إلا في القرن 20. الفنانون المسلمون كانوا يتقنون الهندسة الفراغية والمنظور قبل عصر النهضة الأوروبية.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                <div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 15px; text-align: center; border: 2px solid rgba(255,214,10,0.3);">
+                    <strong style="color: #ffd60a;">الأبعاد:</strong><br>2D → 3D → 4D<br><span style="font-size: 0.9rem; opacity: 0.8;">من المسطح إلى المجسم</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 15px; text-align: center; border: 2px solid rgba(255,214,10,0.3);">
+                    <strong style="color: #ffd60a;">الألوان:</strong><br>أزرق فسيفساء<br>ذهبي لامع<br><span style="font-size: 0.9rem; opacity: 0.8;">تناسق لوني مثالي</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 15px; text-align: center; border: 2px solid rgba(255,214,10,0.3);">
+                    <strong style="color: #ffd60a;">المواد:</strong><br>فسيفساء<br>جبس منحوت<br>خشب مرصع<br><span style="font-size: 0.9rem; opacity: 0.8;">مواد طبيعية فاخرة</span>
+                </div>
+            </div>
+
+            <p style="text-align: justify; font-size: 1.1rem; line-height: 2; margin-top: 2rem;">
+                الفنان المسلم لم يكن يرسم الطبيعة مباشرة، بل كان يستخلص منها القوانين الرياضية والهندسية. كل ورقة شجر تصبح شكلاً هندسياً، كل زهرة تصبح نجماً. هذا التحويل من الطبيعة إلى الهندسة هو جوهر الفن الإسلامي.
+            </p>
+
+            <div class="art-decoration">✦ أمثلة معمارية خالدة ✦</div>
+
+            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; font-size: 1rem;">
+                <div style="padding: 1rem; background: rgba(255,214,10,0.1); border-radius: 12px; border-right: 4px solid #ffd60a;">
+                    <strong style="color: #ffd60a;">الحمراء:</strong> أعقد زخارف هندسية في العالم. كل غرفة تحفة فنية مستقلة. النسب الذهبية موجودة في كل زاوية.
+                </div>
+                <div style="padding: 1rem; background: rgba(255,214,10,0.1); border-radius: 12px; border-right: 4px solid #ffd60a;">
+                    <strong style="color: #ffd60a;">مسجد قرطبة:</strong> أكبر قبة مزخرفة في عصره. الفسيفساء الذهبية تعكس الضوء بطريقة تخلق جواً روحانياً.
+                </div>
+                <div style="padding: 1rem; background: rgba(255,214,10,0.1); border-radius: 12px; border-right: 4px solid #ffd60a;">
+                    <strong style="color: #ffd60a;">الجامع الأزهر:</strong> تناغم مثالي بين الخط والزخرفة. الكتابات القرآنية تزين الجدران بجمال فني.
+                </div>
+                <div style="padding: 1rem; background: rgba(255,214,10,0.1); border-radius: 12px; border-right: 4px solid #ffd60a;">
+                    <strong style="color: #ffd60a;">تاج محل:</strong> قمة المغول في الفن الإسلامي. الرخام الأبيض والأحجار الكريمة تخلق جمالاً خالداً.
+                </div>
+            </div>
+        </div>
+        
+        <div class="image-container" style="margin-top: 2rem;">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663401898650/HixZSyJWmDRgcQfV.jpg" alt="زخرفة إسلامية">
+        </div>
+    </section>
+
+    <!-- Impact -->
+    <section id="impact">
+        <h2>التأثير العالمي</h2>
+        <div class="content-grid">
+            <div class="text-content">
+                <p>نقلت الحضارة الإسلامية العلوم والفنون لأوروبا عبر الأندلس والبحر المتوسط، مما أدى لنهضة أوروبا. الزخرفة الإسلامية ألهمت الحركات الفنية الحديثة مثل <strong>Art Nouveau</strong> و <strong>Modernism</strong>. العلماء الأوروبيون درسوا في الجامعات الإسلامية وترجموا أعمال العلماء المسلمين.</p>
+                <div class="highlight">
+                    <strong>الإرث الخالد:</strong> الجامعات والمدارس • الفنون والعمارة • العلوم والرياضيات • الفلسفة والأخلاق • الطب والصيدلة • الهندسة والتكنولوجيا
+                </div>
+                <p>بدون الحضارة الإسلامية، لما كانت النهضة الأوروبية ممكنة. بدون ترجمة الأعمال اليونانية والفارسية من قبل العلماء المسلمين، لما حافظنا على هذه الكنوز الفكرية. بدون الابتكارات الإسلامية في الرياضيات والفلك والطب، لما تطورت العلوم الحديثة.</p>
+            </div>
+            <div class="image-container">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663401898650/AOXiWDtHwDpFiCwT.jpg" alt="تأثير الزخرفة">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>تصميم وتطوير: لين الشرفاء</h3>
+            <p>مشروع علمي متكامل • الحضارة الإسلامية والخط والعمارة</p>
+            <p style="margin-top: 1.5rem; opacity: 0.8; font-size: 0.9rem;">© 2024 جميع الحقوق محفوظة • بحث علمي موثق</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('overlay');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.querySelectorAll('.mobile-nav-links a, .nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(0,0,0,0.98)';
+            } else {
+                navbar.style.background = 'rgba(0,0,0,0.95)';
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+                mobileMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (mobileNav.classList.contains('active') && !mobileNav.contains(e.target)) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>
